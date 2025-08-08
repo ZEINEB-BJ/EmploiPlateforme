@@ -49,7 +49,7 @@ La plateforme propose une gestion complète du cycle de recrutement : publicatio
 ## ✅ Statut
 Le projet est en phase de test et peut être amélioré. Toute suggestion est la bienvenue.
 
-##🙋‍♀️ Auteure
+## 🙋‍♀️ Auteure
 Zeineb Ben Jeddou – Étudiante en Génie Logiciel
 
 Contact : zeinebbenjeddou01@gmail.com
