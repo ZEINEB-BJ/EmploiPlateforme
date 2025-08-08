@@ -1,0 +1,15 @@
+{
+    "nom": "Ali Ben Salah",
+    "competences": [
+        "React",
+        "Spring Boot",
+        "MySQL",
+        "Git",
+        "REST"
+    ],
+    "experiences": [
+        "Expérience : 2 ans chez DevCorp sur des projets web Java/React"
+    ],
+    "diplomes": [],
+    "langues": []
+}
