@@ -4,7 +4,7 @@
 
 **EmploiPlateforme** est une application web de gestion des offres d’emploi permettant de faciliter le processus de recrutement entre **employeurs** et **candidats**.
 
-La plateforme propose une gestion complète du cycle de recrutement : publication des offres, consultation, candidature, gestion des statuts, et échanges autour des documents (CV et lettre de motivation).
+La plateforme propose une gestion complète du cycle de recrutement : publication des offres, consultation, candidature, gestion des statuts, et analyse intelligente de CVs avec système de matching automatique.
 
 ---
 
