@@ -1,0 +1,26 @@
+Titre du Poste : Ingénieur QA Automation Senior
+
+Description de l'Entreprise :
+Nous sommes une entreprise technologique innovante, spécialisée dans le développement de solutions logicielles de pointe. Nous recherchons un Ingénieur QA Automation Senior passionné pour rejoindre notre équipe de développement agile et renforcer notre expertise en qualité logicielle.
+
+Missions :
+- Concevoir, développer et maintenir des frameworks d'automatisation de tests robustes (Web, Mobile, API REST).
+- Écrire et exécuter des scripts de tests automatisés en utilisant des langages comme Python et Java.
+- Intégrer les tests automatisés dans les pipelines d'intégration continue et de déploiement continu (CI/CD) via des outils comme Jenkins.
+- Collaborer étroitement avec les équipes de développement et de produit pour identifier les cas de test critiques et assurer la couverture des tests.
+- Analyser les résultats des tests, identifier les anomalies et les rapporter dans des outils de gestion de bugs comme Jira.
+- Participer à l'amélioration continue des processus et des outils QA.
+- Réaliser des tests de performance et de sécurité pour garantir la robustesse des applications.
+
+Profil Recherché :
+- Master ou équivalent en Informatique, Génie Logiciel ou domaine similaire.
+- Minimum 3-5 ans d'expérience en assurance qualité logicielle, avec un focus sur l'automatisation.
+- Maîtrise des outils et frameworks d'automatisation : Selenium WebDriver, Appium, Rest Assured, Cypress, Playwright.
+- Excellente connaissance des langages de programmation : Python, Java, JavaScript.
+- Expérience avec les méthodologies de test (BDD, TDD) et les outils de gestion de tests (Cucumber, TestNG, JUnit).
+- Forte expérience avec les systèmes de contrôle de version (Git) et les outils CI/CD (Jenkins, GitLab CI).
+- Connaissance des bases de données SQL et NoSQL.
+- Capacité à travailler en équipe, proactif et rigoureux.
+- Anglais courant indispensable.
+
+Mots-clés pertinents : QA Automation, Tests automatisés, Python, Java, Selenium, API REST, CI/CD, Jenkins, Jira, Git, BDD, TestNG, Cucumber, SQL, Qualité Logicielle.

@@ -1,0 +1,20 @@
+Titre : Data Scientist (H/F)
+
+Description :
+Nous recrutons un(e) Data Scientist pour renforcer notre département Data Analytics.
+
+Missions :
+- Développement de modèles prédictifs (classification, régression).
+- Traitement de données massives.
+- Analyses exploratoires et visualisations.
+
+Compétences requises :
+- Excellente maîtrise de Python ou R.
+- Expérience avec TensorFlow ou PyTorch.
+- Connaissance de Spark et Hadoop.
+- Bonnes notions de NLP et Machine Learning.
+
+Profil :
+Master en Big Data, Statistiques ou Mathématiques appliquées.
+Expérience en entreprise appréciée.
+Anglais courant.

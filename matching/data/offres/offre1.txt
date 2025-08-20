@@ -1,0 +1,20 @@
+Titre : Développeur Python (H/F)
+
+Description :
+Nous recherchons un développeur Python pour rejoindre notre équipe Data.
+
+Missions :
+- Développement d’API REST avec Flask ou Django.
+- Automatisation de scripts de traitement de données.
+- Mise en place de modèles de Machine Learning simples.
+
+Compétences requises :
+- Maîtrise de Python et Pandas.
+- Expérience en développement avec Flask ou Django.
+- Connaissances en SQL et bases de données relationnelles.
+- Notions en Machine Learning (Scikit-learn).
+
+Profil :
+Bac+5 en Informatique ou équivalent.
+2 ans d’expérience minimum en développement Python.
+Anglais technique.
