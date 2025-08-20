@@ -69,11 +69,11 @@ La plateforme propose une gestion complète du cycle de recrutement : publicatio
 ---
 
 ## 🔄 Flux de fonctionnement du matching
-1- **Dépôt de CV :** Le candidat téléverse son CV PDF
-2- **Extraction automatique :** Le système extrait les données pertinentes
-3- **Analyse des offres :** Identification des compétences requises
-4- **Calcul de compatibilité :** Score entre 0 et 1 pour chaque paire CV-offre
-4- **Classement intelligent :** Affichage des résultats triés par pertinence
+- 1- **Dépôt de CV :** Le candidat téléverse son CV PDF
+- 2- **Extraction automatique :** Le système extrait les données pertinentes
+- 3- **Analyse des offres :** Identification des compétences requises
+- 4- **Calcul de compatibilité :** Score entre 0 et 1 pour chaque paire CV-offre
+- 5- **Classement intelligent :** Affichage des résultats triés par pertinence
 
 ## ✅ Statut
 Le projet est en phase finale de développement. Le système de matching est fonctionnel et testé, l'intégration avec la plateforme est en cours.
