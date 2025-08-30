@@ -122,7 +122,3 @@ python app.py
 
 Zeineb Ben Jeddou – Étudiante en Génie Logiciel
 📧 Contact : zeinebbenjeddou01@gmail.com
-
-```
-
-```
