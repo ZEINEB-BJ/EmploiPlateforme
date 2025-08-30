@@ -2,54 +2,117 @@
 
 ## 📌 Présentation
 
-**EmploiPlateforme** est une application web de gestion des offres d’emploi permettant de faciliter le processus de recrutement entre **employeurs** et **candidats**.
-
-La plateforme propose une gestion complète du cycle de recrutement : publication des offres, consultation, candidature, gestion des statuts, et échanges autour des documents (CV et lettre de motivation).
+**EmploiPlateforme** est une application web de gestion des offres d’emploi avec **analyse intelligente de CVs**.  
+Elle facilite le processus de recrutement entre **employeurs** et **candidats**, en digitalisant tout le cycle de recrutement et en intégrant un **module de matching automatique** basé sur l’IA.
 
 ---
 
 ## 🚀 Fonctionnalités principales
 
 ### 🔐 Authentification
-- Authentification sécurisée avec JWT
-- Rôles : `CANDIDAT` et `EMPLOYEUR`
 
-### 👤 Côté Candidat
-- Inscription et connexion
-- Ajout/modification de profil avec téléversement de CV
-- Consultation des offres d’emploi
+- Inscription et connexion sécurisée avec JWT
+- Gestion des rôles : `CANDIDAT` et `EMPLOYEUR`
+
+### 👤 Candidat
+
+- Création de profil avec téléversement de CV (PDF)
+- Consultation des offres disponibles
 - Postulation avec lettre de motivation
-- Suivi de l’état des candidatures (en attente, acceptée, refusée)
+- Suivi des candidatures (en attente / acceptée / refusée)
+- Recommandations personnalisées basées sur son CV
 
-### 🏢 Côté Employeur
+### 🏢 Employeur
+
 - Création, modification et suppression d’offres
-- Consultation des candidatures reçues
-- Téléchargement des CV et lecture des lettres de motivation
-- Prise de décision sur chaque candidature (accepter / refuser)
+- Consultation et tri automatique des candidatures reçues
+- Téléchargement des CVs et lecture des lettres de motivation
+- Décision sur chaque candidature (accepter / refuser)
+- Classement automatique par **score de pertinence** (matching Python)
+
+### 🤖 Matching CV-Offre (IA)
+
+- Extraction des compétences, expériences, formations et langues depuis les CVs PDF
+- Analyse des offres d’emploi pour identifier les exigences
+- Calcul d’un score de pertinence (TF-IDF / BERT / NLP)
+- Tri automatique des candidatures
 
 ---
 
 ## 🧱 Technologies utilisées
 
 ### 🔧 Backend
-- **Java 17**
-- **Spring Boot**
-- **Spring Security**
-- **JPA/Hibernate**
-- **MySQL**
-- **JWT** (JSON Web Token)
+
+- Java 17
+- Spring Boot
+- Spring Security (JWT)
+- JPA / Hibernate
+- MySQL
 
 ### 🎨 Frontend
-- **React JS**
-- **Bootstrap**
-- **Axios**
+
+- React.js
+- Bootstrap
+- Axios
+
+### 🤖 Matching
+
+- Python (Pandas, spaCy, Scikit-learn, TF-IDF/BERT)
+- API REST intégrée à Spring Boot
 
 ---
 
-## ✅ Statut
-Le projet est en phase de test et peut être amélioré. Toute suggestion est la bienvenue.
+## 📊 Cahier de charges
 
-## 🙋‍♀️ Auteure
+### Objectifs
+
+- Digitaliser le processus de recrutement
+- Automatiser l’analyse des CVs
+- Faciliter la gestion des offres
+- Offrir aux candidats des recommandations ciblées
+
+### Utilisateurs
+
+- **Employeurs** : publication et gestion des offres
+- **Candidats** : postulation et suivi des candidatures
+
+### Contraintes
+
+- Respect de la confidentialité des données
+- Compatibilité multi-plateformes (PC, tablette, mobile)
+
+---
+
+## 🗂️ Planification Agile (Sprints)
+
+- **Sprint 1** : Authentification (1 semaine)
+- **Sprint 2** : Gestion et consultation des offres (1 semaine)
+- **Sprint 3** : Gestion des candidatures (1 semaine)
+- **Sprint 4** : Développement du module de matching (2 semaines)
+- **Sprint 5** : Intégration du matching à la plateforme (1 semaine)
+
+---
+
+## ⚙️ Installation & Lancement
+
+### Backend (Spring Boot)
+
+```bash
+cd emploi-plateforme-backend
+mvn spring-boot:run
+
+###Frontend (React)
+cd emploi-plateforme-frontend
+npm install
+npm start
+
+###Matching (Python)
+cd emploi-plateforme-matching
+pip install -r requirements.txt
+python app.py
+
+##👩‍💻 Auteure
+
 Zeineb Ben Jeddou – Étudiante en Génie Logiciel
-
-Contact : zeinebbenjeddou01@gmail.com
+📧 Contact : zeinebbenjeddou01@gmail.com
+```
