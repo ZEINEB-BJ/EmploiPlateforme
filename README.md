@@ -100,19 +100,29 @@ Elle facilite le processus de recrutement entre **employeurs** et **candidats**,
 ```bash
 cd emploi-plateforme-backend
 mvn spring-boot:run
+```
 
-###Frontend (React)
+### Frontend (React)
+
+```bash
 cd emploi-plateforme-frontend
 npm install
 npm start
+```
 
-###Matching (Python)
+### Matching (Python)
+
+```bash
 cd emploi-plateforme-matching
 pip install -r requirements.txt
 python app.py
+```
 
-##👩‍💻 Auteure
+## 👩‍💻 Auteure
 
 Zeineb Ben Jeddou – Étudiante en Génie Logiciel
 📧 Contact : zeinebbenjeddou01@gmail.com
+
+```
+
 ```
