@@ -7,6 +7,7 @@ import tn.emploi_plateforme_backend.emploi_plateforme_backend.repository.Candida
 import tn.emploi_plateforme_backend.emploi_plateforme_backend.repository.OffreRepository;
 import tn.emploi_plateforme_backend.emploi_plateforme_backend.repository.UtilisateurRepository;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -20,6 +21,9 @@ public class ApplicationService {
 
     @Autowired
     private OffreRepository offreRepository;
+
+    @Autowired
+    private MatchingService matchingService;
 
 
     public void applyToJob(Long jobId, String candidatEmail, String lettreMotivation) {
@@ -39,11 +43,9 @@ public class ApplicationService {
             throw new RuntimeException("Cette offre n'est plus active");
         }
 
-
         if (candidatureRepository.existsByCandidatAndOffre(candidat, offre)) {
             throw new RuntimeException("Vous avez déjà postulé à cette offre");
         }
-
 
         if (lettreMotivation == null || lettreMotivation.trim().isEmpty()) {
             throw new RuntimeException("La lettre de motivation est requise");
@@ -63,6 +65,14 @@ public class ApplicationService {
         candidature.setEtat(StatutCandidature.EN_ATTENTE);
         candidature.setLettreMotivation(lettreMotivation.trim());
 
+        // calcul score matching si le CV existe
+        if (candidat.getCvPath() != null && !candidat.getCvPath().isEmpty()) {
+            String offreText = offre.getTitre() + " " + offre.getDescription();
+            Double score = matchingService.calculateMatchingScore(candidat.getCvPath(), offreText);
+            candidature.setScore(BigDecimal.valueOf(score));
+
+        }
+
         candidatureRepository.save(candidature);
     }
 
@@ -70,6 +80,7 @@ public class ApplicationService {
     public void applyToJob(Long jobId, String candidatEmail) {
         throw new RuntimeException("La lettre de motivation est désormais requise pour postuler");
     }
+
 
     public List<Candidature> getCandidateApplications(String candidatEmail) {
         Utilisateur utilisateur = utilisateurRepository.findByEmail(candidatEmail)
@@ -103,6 +114,11 @@ public class ApplicationService {
         return candidatureRepository.findByOffre(offre);
     }
 
+    // récupérer candidatures triées par score
+    public List<Candidature> getCandidaturesByOffreOrderByScore(Long offreId) {
+        return candidatureRepository.findByOffreIdOffreOrderByScoreDesc(offreId);
+    }
+
 
     public void updateApplicationStatus(Long applicationId, Decision decision, String employeurEmail) {
         Candidature candidature = candidatureRepository.findById(applicationId)
@@ -121,14 +137,11 @@ public class ApplicationService {
             throw new RuntimeException("Vous ne pouvez modifier que les candidatures de vos propres offres");
         }
 
-
         if (candidature.getEtat() != StatutCandidature.EN_ATTENTE) {
             throw new RuntimeException("Cette candidature a déjà été traitée");
         }
 
-
         candidature.setDecision(decision);
-
 
         switch (decision) {
             case ACCEPTEE:
@@ -145,14 +158,12 @@ public class ApplicationService {
         candidatureRepository.save(candidature);
     }
 
-
     public Candidature getApplicationById(Long applicationId, String userEmail) {
         Candidature candidature = candidatureRepository.findById(applicationId)
                 .orElseThrow(() -> new RuntimeException("Candidature non trouvée"));
 
         Utilisateur utilisateur = utilisateurRepository.findByEmail(userEmail)
                 .orElseThrow(() -> new RuntimeException("Utilisateur non trouvé"));
-
 
         if (utilisateur instanceof Candidat) {
             Candidat candidat = (Candidat) utilisateur;
@@ -171,7 +182,6 @@ public class ApplicationService {
         return candidature;
     }
 
-
     public Candidature getApplicationDetailsForEmployer(Long applicationId, String employeurEmail) {
         Candidature candidature = candidatureRepository.findById(applicationId)
                 .orElseThrow(() -> new RuntimeException("Candidature non trouvée"));
@@ -189,10 +199,9 @@ public class ApplicationService {
             throw new RuntimeException("Vous ne pouvez voir que les candidatures de vos offres");
         }
 
-
-
         return candidature;
     }
+
 
     public void withdrawApplication(Long applicationId, String candidatEmail) {
         Candidature candidature = candidatureRepository.findById(applicationId)
@@ -207,17 +216,32 @@ public class ApplicationService {
 
         Candidat candidat = (Candidat) utilisateur;
 
-
         if (!candidature.getCandidat().getId().equals(candidat.getId())) {
             throw new RuntimeException("Vous ne pouvez retirer que vos propres candidatures");
         }
-
 
         if (candidature.getEtat() != StatutCandidature.EN_ATTENTE) {
             throw new RuntimeException("Vous ne pouvez retirer que les candidatures en attente");
         }
 
-
         candidatureRepository.delete(candidature);
+    }
+
+    //recalcul score
+    public void recalculateAllScores() {
+        List<Candidature> candidatures = candidatureRepository.findAll();
+
+        for (Candidature candidature : candidatures) {
+            if (candidature.getCandidat().getCvPath() != null) {
+                String offreText = candidature.getOffre().getTitre() + " " + candidature.getOffre().getDescription();
+                Double score = matchingService.calculateMatchingScore(
+                        candidature.getCandidat().getCvPath(),
+                        offreText
+                );
+                candidature.setScore(BigDecimal.valueOf(score));
+
+                candidatureRepository.save(candidature);
+            }
+        }
     }
 }

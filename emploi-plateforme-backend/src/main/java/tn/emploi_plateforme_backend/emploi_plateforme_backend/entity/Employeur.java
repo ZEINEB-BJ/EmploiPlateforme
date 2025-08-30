@@ -33,3 +33,4 @@ public class Employeur extends Utilisateur {
     public List<Offre> getOffres() { return offres; }
     public void setOffres(List<Offre> offres) { this.offres = offres; }
 }
+

@@ -2,6 +2,8 @@ package tn.emploi_plateforme_backend.emploi_plateforme_backend.entity;
 
 
 import jakarta.persistence.*;
+
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
@@ -22,6 +24,10 @@ public class Candidature {
 
     @Column(columnDefinition = "TEXT")
     private String lettreMotivation;
+
+    @Column(precision = 5, scale = 4)
+    private BigDecimal score = BigDecimal.ZERO;
+
 
     @ManyToOne
     @JoinColumn(name = "candidat_id", nullable = false)
@@ -68,5 +74,13 @@ public class Candidature {
 
     public void setLettreMotivation(String lettreMotivation) {
         this.lettreMotivation = lettreMotivation;
+    }
+
+    public BigDecimal getScore() {
+        return score;
+    }
+
+    public void setScore(BigDecimal score) {
+        this.score = score;
     }
 }

@@ -12,6 +12,8 @@ import tn.emploi_plateforme_backend.emploi_plateforme_backend.service.Applicatio
 import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
+
 
 @RestController
 @RequestMapping("/api/applications")
@@ -170,4 +172,32 @@ public class ApplicationController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+    // endpoint : candidatures triées par score (employeur)
+    @GetMapping("/job/{jobId}/sorted")
+    public ResponseEntity<List<Map<String, Object>>> getCandidaturesSortedByScore(@PathVariable Long jobId) {
+        List<Candidature> candidatures = applicationService.getCandidaturesByOffreOrderByScore(jobId);
+        List<Map<String, Object>> result = candidatures.stream().map(c -> {
+            Map<String, Object> dto = new HashMap<>();
+            dto.put("id", c.getId());
+            dto.put("datePostulation", c.getDatePostulation());
+            dto.put("etat", c.getEtat());
+            dto.put("score", c.getScore());
+            dto.put("candidatNom", c.getCandidat().getNom());
+            dto.put("candidatPrenom", c.getCandidat().getPrenom());
+            dto.put("candidatEmail", c.getCandidat().getEmail());
+            dto.put("lettreMotivation", c.getLettreMotivation());
+            return dto;
+        }).collect(Collectors.toList());
+        return ResponseEntity.ok(result);
+    }
+
+    // endpoint : recalcul de tous les scores
+    @PostMapping("/recalculate-scores")
+    public ResponseEntity<String> recalculateScores() {
+        applicationService.recalculateAllScores();
+        return ResponseEntity.ok("Scores recalculés avec succès");
+    }
+
+
 }
