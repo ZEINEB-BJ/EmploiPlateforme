@@ -115,7 +115,7 @@ npm start
 ```bash
 cd emploi-plateforme-matching
 pip install -r requirements.txt
-python app.py
+python api.py
 ```
 
 ## 👩‍💻 Auteure
