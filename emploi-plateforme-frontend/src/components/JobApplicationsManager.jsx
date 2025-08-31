@@ -49,28 +49,6 @@ const JobApplicationsManager = ({
               />
             </div>
           </Tab>
-
-          <Tab
-            eventKey="chronological"
-            title={
-              <span>
-                <i className="bi bi-calendar me-1"></i>
-                Vue chronologique
-              </span>
-            }
-          >
-            <div className="p-3">
-              <div className="text-center py-4">
-                <i
-                  className="bi bi-clock text-muted"
-                  style={{ fontSize: "3rem" }}
-                ></i>
-                <p className="text-muted mt-3">
-                  Vue chronologique des candidatures (à implémenter)
-                </p>
-              </div>
-            </div>
-          </Tab>
         </Tabs>
       </Modal.Body>
 

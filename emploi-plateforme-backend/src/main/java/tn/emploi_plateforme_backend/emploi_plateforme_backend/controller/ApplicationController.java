@@ -182,11 +182,28 @@ public class ApplicationController {
             dto.put("id", c.getId());
             dto.put("datePostulation", c.getDatePostulation());
             dto.put("etat", c.getEtat());
-            dto.put("score", c.getScore());
+            dto.put("matchingScore", c.getScore());
             dto.put("candidatNom", c.getCandidat().getNom());
             dto.put("candidatPrenom", c.getCandidat().getPrenom());
             dto.put("candidatEmail", c.getCandidat().getEmail());
             dto.put("lettreMotivation", c.getLettreMotivation());
+
+            Map<String, Object> candidatInfo = new HashMap<>();
+            candidatInfo.put("id", c.getCandidat().getId());
+            candidatInfo.put("nom", c.getCandidat().getNom());
+            candidatInfo.put("prenom", c.getCandidat().getPrenom());
+            candidatInfo.put("email", c.getCandidat().getEmail());
+            candidatInfo.put("cin", c.getCandidat().getCin());
+            candidatInfo.put("fonctionActuelle", c.getCandidat().getFonctionActuelle());
+            candidatInfo.put("cvPath", c.getCandidat().getCvPath());
+            dto.put("candidat", candidatInfo);
+
+            Map<String, Object> offreInfo = new HashMap<>();
+            offreInfo.put("idOffre", c.getOffre().getIdOffre());
+            offreInfo.put("titre", c.getOffre().getTitre());
+            offreInfo.put("localisation", c.getOffre().getLocalisation());
+            dto.put("offre", offreInfo);
+
             return dto;
         }).collect(Collectors.toList());
         return ResponseEntity.ok(result);

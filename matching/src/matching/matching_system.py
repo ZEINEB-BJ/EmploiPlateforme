@@ -8,64 +8,64 @@ class EnhancedMatchingSystem:
     def __init__(self):
         self.vectorizer = TfidfVectorizer(
             stop_words='english',
-            ngram_range=(1, 2), 
+            ngram_range=(1, 3),   
             max_features=5000,
             min_df=1,
             max_df=0.95
         )
         self.processor = EnhancedDataProcessor()
         
-       
+      
         self.weights = {
-            'text_similarity': 0.25,      
-            'education_match': 0.15,      
-            'experience_match': 0.10,    
-            'language_match': 0.05,       
-            'location_match': 0.05       
+            'technical_skills': 0.35,  
+            'text_similarity': 0.20,
+            'education_match': 0.10,
+            'experience_match': 0.25,
+            'language_match': 0.05,
+            'location_match': 0.05
         }
     
     def compute_enhanced_score(self, cv_text: str, offer_text: str) -> Dict:
-        
-        
         cv_entities = self.processor.extract_enhanced_entities(cv_text)
         offer_entities = self.processor.extract_enhanced_entities(offer_text)
         
-      
         scores = {}
-      
+
+        
         scores['technical_skills'] = self.compute_technical_skills_score(
             cv_entities['technical_skills'], 
             offer_entities['technical_skills']
         )
-        
-        
+
+      
         scores['text_similarity'] = self.compute_text_similarity_score(cv_text, offer_text)
-        
-       
+
+      
         scores['education_match'] = self.compute_education_score(
             cv_entities['education'], 
             offer_entities['education']
         )
-        
+
         
         scores['experience_match'] = self.compute_experience_score(
             cv_entities['experience_years'], 
             offer_entities['experience_years']
         )
-        
+
+    
         scores['language_match'] = self.compute_language_score(
             cv_entities['languages'], 
             offer_entities['languages']
         )
-        
-       
+
+    
         scores['location_match'] = self.compute_location_score(
             cv_entities['locations'], 
             offer_entities['locations']
         )
         
-        
-        final_score = sum(scores[key] * self.weights[key] for key in scores.keys())
+       
+        final_score = sum(scores[key] * self.weights[key] for key in self.weights.keys())
         final_score = min(100, max(0, final_score * 100)) 
         
         return {
@@ -80,7 +80,6 @@ class EnhancedMatchingSystem:
         }
     
     def compute_technical_skills_score(self, cv_skills: List[str], offer_skills: List[str]) -> float:
-       
         if not offer_skills:
             return 0.8 
         
@@ -92,17 +91,14 @@ class EnhancedMatchingSystem:
         if not offer_skills_set:
             return 0.0
         
-       
         base_score = len(matching_skills) / len(offer_skills_set)
         
-       
         bonus = min(0.2, (len(cv_skills_set) - len(offer_skills_set)) / len(offer_skills_set)) if len(offer_skills_set) > 0 else 0
         bonus = max(0, bonus) 
         
         return min(1.0, base_score + bonus)
     
     def compute_text_similarity_score(self, cv_text: str, offer_text: str) -> float:
-      
         try:
             cv_clean = clean_text(cv_text)
             offer_clean = clean_text(offer_text)
@@ -118,11 +114,9 @@ class EnhancedMatchingSystem:
             return 0.0
     
     def compute_education_score(self, cv_education: List[str], offer_education: List[str]) -> float:
-        
         if not offer_education:
             return 0.7  
         
-      
         education_levels = {
             'doctorat': 5, 'phd': 5, 'docteur': 5,
             'master': 4, 'mastère': 4, 'm2': 4, 'm1': 3.5,
@@ -156,7 +150,6 @@ class EnhancedMatchingSystem:
             return 0.4
     
     def compute_experience_score(self, cv_years: List[int], offer_years: List[int]) -> float:
-       
         if not offer_years:
             return 0.7  
         
@@ -173,7 +166,6 @@ class EnhancedMatchingSystem:
             return 0.3
     
     def compute_language_score(self, cv_languages: List[str], offer_languages: List[str]) -> float:
-       
         if not offer_languages:
             return 1.0
         
@@ -188,7 +180,6 @@ class EnhancedMatchingSystem:
         return len(matching_languages) / len(offer_lang_set)
     
     def compute_location_score(self, cv_locations: List[str], offer_locations: List[str]) -> float:
-      
         if not offer_locations:
             return 1.0
         
@@ -201,6 +192,5 @@ class EnhancedMatchingSystem:
             return 0.5  
     
     def compute_score(self, cv_text: str, offer_text: str) -> float:
-      
         result = self.compute_enhanced_score(cv_text, offer_text)
         return result['final_score']
